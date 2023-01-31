@@ -27,22 +27,18 @@ This is a powerful method that can solve for ${\bf x}$ for a complicated nonline
 To find the roots $x$ of a function $f(x)$ in one dimension, given an initial guess $x_0$, the Newton-Raphson method generates improvements using the iteration $x_{i+1}=x_i-f(x_i)/f'(x_i)$, where the dash denotes the derivative.  The iteration can be re-expressed as
 $$x_{i+1}=x_i+\delta x_i \quad\mbox{where}\quad f'(x_i) \delta x_i = -f(x_i).$$
 The extension of Newton's method to an $n$-dimensional system is then
-$$(a)\quad \vec{x}_{i+1} = \vec{x}_i + \vec{\delta x}_i  \quad\mbox{where}\quad (b)\quad \frac{\vec{\partial F}}{\vec{\partial x}} \vec{\delta x}_i = -\vec{F}(\vec{x}_i).$$
-The $n\times n$ Jacobian matrix $\frac{\vec{\partial F}}{\vec{\partial x}}$ is evaluated at ${\vec{x}_i}$.  In order to apply the update $(a)$, the linear system $(b)$ needs to be solved for the unknown $\vec{\delta x}_i$.
+$$(a)\quad {\bf x}_{i+1} = {\bf x}_i + {\bf \delta x}_i  \quad\mbox{where}\quad (b)\quad \frac{{\bf \partial F}}{{\bf \partial x}} {\bf \delta x}_i = -{\bf F}({\bf x}_i).$$
+The $n\times n$ Jacobian matrix $\frac{{\bf \partial F}}{{\bf \partial x}}$ is evaluated at ${\bf x}_i$.  In order to apply the update $(a)$, the linear system $(b)$ needs to be solved for the unknown ${\bf \delta x}_i$.
 
 ### Jacobian-Free Newton method
 
 The Jacobian matrix is usually difficult to evaluate.  However, the problem $(b)$ is in the form $A{\bf \delta x}={\bf b}$, which can be solved using the '''Krylov-subspace method GMRES(m)'''.  The GMRES algorithm does not need to know the matrix $A$ itself, only the result of multiplying a vector by $A$.  For a given starting vector ${\bf \delta x}_0$, e.g. ${\bf \delta x}_0={\bf b}$, the method seeks solutions for ${\bf \delta x}$ in $\mathrm{span}({\bf x}_0,A{\bf x}_0,A^2{\bf x}_0,...)$, but uses Gram-Schmidt orthogonalisation to improve the numerical suitability of this basis set.  The set of orthogonalised vectors is called the Krylov-subspace, and m is the maximum number of vectors stored.
 
-Iterations of the GMRES algorithm for the problem $(b)$ involve calculating products of the Jacobian with given $\vec{\delta x}$, which may be approximated, e.g.
-\begin{equation}\label{eq:Japprox}
-(c)\qquad
-\left.\frac{\vec{\partial F}}{\vec{\partial x}}\right|_{\vec{x}_i}\,\vec{\delta x} \approx
-\frac{1}{\epsilon}(\vec{F}(\vec{x}_i+\epsilon\,\vec{\delta x})-\vec{F}(\vec{x}_i)) 
-\end{equation}
-for some small value $\epsilon$.  (Try $\epsilon$ such that $(\epsilon||\vec{\delta x}||)\,/\,||\vec{x}_i||=10^{-6}$.)  The important point is that we do not need to know the Jacobian; '''only a routine for evaluating $\vec{F}(\vec{x})$ is required'''.
+Iterations of the GMRES algorithm for the problem $(b)$ involve calculating products of the Jacobian with given ${\bf \delta x}$, which may be approximated, e.g.
+$$(c)\qquad \frac{{\bf \partial F}}{{\bf \partial x}} {\bf \delta x} \approx \frac{1}{\epsilon}({\bf F}({\bf x}_i+\epsilon {\bf \delta x})-{\bf F}({\bf x}_i))$$ 
+for some small value $\epsilon$.  (Try $\epsilon$ such that $(\epsilon||{\bf \delta x}||)/||{\bf x}_i||=10^{-6}$.)  The important point is that we do not need to know the Jacobian; *only a routine for evaluating* ${\bf F}({\bf x})$ *is required*.
 
-Note that provided that each step of the Newton method, $\vec{\delta x}$, is essentially in the correct direction, the method is expected to converge.  Therefore the tolerance specified in the accuracy of the solution for $\vec{\delta x}$ in each Newton step (calculated via the GMRES method) typically need not be so stringent as the tolerance placed on the Newton method itself for the solution $\vec{x}$.  For example, we might seek a relative error for the Newton solution $||\vec{F}(\vec{x})||/||\vec{x}||=O(10^{-8})$, but a relative error for the GMRES steps $||A\,\vec{\delta x}-\vec{b}||/||\vec{\delta x}||=O(10^{-3})$ is likely to be sufficient for calculation of the steps $\vec{\delta x}$.
+Note that provided that each step of the Newton method, ${\bf \delta x}$, is essentially in the correct direction, the method is expected to converge.  Therefore the tolerance specified in the accuracy of the solution for ${\bf \delta x}$ in each Newton step (calculated via the GMRES method) typically need not be so stringent as the tolerance placed on the Newton method itself for the solution ${\bf x}$.  For example, we might seek a relative error for the Newton solution $||{\bf F}({\bf x})||/||{\bf x}||=O(10^{-8})$, but a relative error for the GMRES steps $||A{\bf \delta x}-{\bf b}||/||{\bf \delta x}||=O(10^{-3})$ is likely to be sufficient for calculation of the steps ${\bf \delta x}$.
 
 ### Hookstep approach
 
