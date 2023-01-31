@@ -7,6 +7,8 @@ I hope that you will find that the code is simply written, and that it can be bo
 
 The JFNK solver and GMRES codes could be run 'native' (MATLAB/Fortran90) or could be integrated with codes developed in other languages by asking ${\bf F}$ to save ${\bf x}$ to disk, execute the existing code via a terminal command, then loading the result.  The MATLAB version will run under the free alternative Octave.  The code may be supplied a preconditioner.
 
+[**Tutorial** and **Adapting the code for your own use**](Tutorial/README.md).
+
 FURTHER DETAILS ON THE METHOD:  https://doi.org/10.48550/arXiv.1908.06730
 
 CITATION:  https://doi.org/10.48550/arXiv.1908.06730 or https://doi.org/10.1016/j.softx.2017.05.003
@@ -25,14 +27,14 @@ This is a powerful method that can solve for ${\bf x}$ for a complicated nonline
 ### Newton-Raphson method
 
 To find the roots $x$ of a function $f(x)$ in one dimension, given an initial guess $x_0$, the Newton-Raphson method generates improvements using the iteration $x_{i+1}=x_i-f(x_i)/f'(x_i)$, where the dash denotes the derivative.  The iteration can be re-expressed as
-$$x_{i+1}=x_i+\delta x_i \quad\mbox{where}\quad f'(x_i) \delta x_i = -f(x_i).$$
+$$x_{i+1}=x_i+\delta x_i \quad\mbox{where}\quad f'(x_i)\ \delta x_i = -f(x_i).$$
 The extension of Newton's method to an $n$-dimensional system is then
-$$(a)\quad {\bf x}_{i+1} = {\bf x}_i + {\bf \delta x}_i  \quad\mbox{where}\quad (b)\quad \frac{{\bf \partial F}}{{\bf \partial x}} {\bf \delta x}_i = -{\bf F}({\bf x}_i).$$
+$$(a)\quad {\bf x}_{i+1} = {\bf x}_i + {\bf \delta x}_i  \quad\mbox{where}\quad (b)\quad \frac{{\bf \partial F}}{{\bf \partial x}}\ {\bf \delta x}_i = -{\bf F}({\bf x}_i).$$
 The $n\times n$ Jacobian matrix $\frac{{\bf \partial F}}{{\bf \partial x}}$ is evaluated at ${\bf x}_i$.  In order to apply the update $(a)$, the linear system $(b)$ needs to be solved for the unknown ${\bf \delta x}_i$.
 
 ### Jacobian-Free Newton method
 
-The Jacobian matrix is usually difficult to evaluate.  However, the problem $(b)$ is in the form $A{\bf \delta x}={\bf b}$, which can be solved using the '''Krylov-subspace method GMRES(m)'''.  The GMRES algorithm does not need to know the matrix $A$ itself, only the result of multiplying a vector by $A$.  For a given starting vector ${\bf \delta x}_0$, e.g. ${\bf \delta x}_0={\bf b}$, the method seeks solutions for ${\bf \delta x}$ in $\mathrm{span}({\bf x}_0,A{\bf x}_0,A^2{\bf x}_0,...)$, but uses Gram-Schmidt orthogonalisation to improve the numerical suitability of this basis set.  The set of orthogonalised vectors is called the Krylov-subspace, and m is the maximum number of vectors stored.
+The Jacobian matrix is usually difficult to evaluate.  However, the problem $(b)$ is in the form $A\ {\bf \delta x}={\bf b}$, which can be solved using the Krylov-subspace method GMRES(m).  The GMRES algorithm does not need to know the matrix $A$ itself, only the result of multiplying a vector by $A$.  For a given starting vector ${\bf \delta x}_0$, e.g. ${\bf \delta x}_0={\bf b}$, the method seeks solutions for ${\bf \delta x}$ in $\mathrm{span}({\bf x}_0,A{\bf x}_0,A^2{\bf x}_0,...)$, but uses Gram-Schmidt orthogonalisation to improve the numerical suitability of this basis set.  The set of orthogonalised vectors is called the Krylov-subspace, and m is the maximum number of vectors stored.
 
 Iterations of the GMRES algorithm for the problem $(b)$ involve calculating products of the Jacobian with given ${\bf \delta x}$, which may be approximated, e.g.
 $$(c)\qquad \frac{{\bf \partial F}}{{\bf \partial x}} {\bf \delta x} \approx \frac{1}{\epsilon}({\bf F}({\bf x}_i+\epsilon {\bf \delta x})-{\bf F}({\bf x}_i))$$ 
@@ -43,11 +45,12 @@ Note that provided that each step of the Newton method, ${\bf \delta x}$, is ess
 ### Hookstep approach
 
 To improve the domain of convergence of the Newton method, it is commonplace to limit the size of the step taken.  One approach is simply to take a 'damped' step in the direction of the solution to $(b)$, i.e. step by $\alpha\ {\bf \delta x}_i$ , where $\alpha \in (0,1]$.  
-In the hookstep approach, we minimise subject to the condition that the magnitude of the Newton step is limited, 
-$||{\bf \delta x}_i|| < \delta$, 
-where $\delta$ is the size of the '''trust region''':
-$$(d)\quad \min_{{\bf \delta x}_i:\ ||{\bf \delta x}_i||<\delta} \  \left|\left| {\bf F}(\vec{x}_i) + \frac{\vec{\partial F}}{\vec{\partial x}} \vec{\delta x}_i \right|\right|\ .$$
-Given the minimisation, the hookstep $\vec{\delta x}_i$ is expected to produce a better result than a simple damped step of the same size.  It is also expected to perform much better in 'valleys', where it produces a bent/hooked step to a point along the valley, 
+
+In the hookstep approach, we minimise subject to the condition that the magnitude of the Newton step is limited, $||{\bf \delta x}_i|| < \delta$ 
+where $\delta$ is the size of the 'trust region'
+
+$$(d)\quad \min_{{\bf \delta x}_i:\ ||{\bf \delta x}_i||<\delta} \  || {\bf F}({\bf x}_i) + \frac{{\bf \partial F}}{{\bf \partial x}} {\bf \delta x}_i || \ .$$
+Given the minimisation, the hookstep ${\bf \delta x}_i$ is expected to produce a better result than a simple damped step of the same size.  It is also expected to perform much better in 'valleys', where it produces a bent/hooked step to a point along the valley, 
 rather than jumping from one side of the valley to the other.
 
 The hookstep can be calculated with little extra work to the GMRES method, provided that the size of Krylov-subspace, m, is chosen sufficiently large to solve to the desired accuracy within m GMRES iterations.
@@ -56,14 +59,14 @@ For a given ${\bf \delta x}_i$, the reduction in error predicted by the minimisa
 
 ### Preconditioning 
 
-The GMRES implementations can be supplied with a preconditioner routine (see [[File:GMRESm.f90]]), but this can be avoided if the method is combined with time integration (see comment at [[File:Arnoldi.f]]).
+The GMRES implementations can be supplied with a preconditioner routine (see [GMRES subroutine](https://openpipeflow.org/index.php?title=File:GMRESm.f90)), but is unlikely to be necessary when the method is combined with time integration.
 
 ### Further details
 
-Extended overview of method (arxiv;pdf) [https://arxiv.org/pdf/1908.06730.pdf] (see section 4 on use of code).
+Extended overview https://doi.org/10.48550/arXiv.1908.06730 See section 4 for a [Tutorial and Adapting the code for your own use](Tutorial/README.md)
 
-Usage of NewtonHook subroutine [[File:NewtonHook.f90]] (essentially same for FORTRAN and MATLAB implementations).
+Usage of [NewtonHook subroutine](https://openpipeflow.org/index.php?title=File:NewtonHook.f90) (essentially same for FORTRAN and MATLAB implementations).
 
-On GMRES and preconditioning, see [[File:GMRESm.f90]].
+Usage of [GMRES subroutine](https://openpipeflow.org/index.php?title=File:GMRESm.f90) and preconditioning.
 
-Further details on the method, see e.g. [http://channelflow.org/dokuwiki/doku.php?id=docs:math:newton_krylov_hookstep Newton-Krylov-Hookstep] (channelflow.org).
+Further details on the method [channelflow.org](http://channelflow.org/dokuwiki/doku.php?id=docs:math:newton_krylov_hookstep).
