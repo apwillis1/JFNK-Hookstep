@@ -42,19 +42,17 @@ Note that provided that each step of the Newton method, ${\bf \delta x}$, is ess
 
 ### Hookstep approach
 
-To improve the domain of convergence of the Newton method, it is commonplace to limit the size of the step taken.  One approach is simply to take a 'damped' step in the direction of the solution to $(b)$, i.e. step by $\alpha\ \vec{\delta x}_i$, where $\alpha \in (0,1]$.  In the '''hookstep approach''', we minimise subject to the condition that the magnitude of the Newton step is limited, $||\vec{\delta x}_i||<\delta$, where $\delta$ is the size of the '''trust region''':
-\begin{equation} \label{eq:dxerr}
-(d)\qquad
-\min_{\vec{\delta x}_i:\ ||\vec{\delta x}_i||<\delta} \  \left|\left|\left.  
-\,\vec{F}(\vec{x}_i) + \frac{\vec{\partial F}}{\vec{\partial x}}\right|_{\vec{x}_i}
-\vec{\delta x}_i \right|\right|\ .
-\end{equation}
+To improve the domain of convergence of the Newton method, it is commonplace to limit the size of the step taken.  One approach is simply to take a 'damped' step in the direction of the solution to $(b)$, i.e. step by $\alpha\ {\bf \delta x}_i$ , where $\alpha \in (0,1]$.  
+In the hookstep approach, we minimise subject to the condition that the magnitude of the Newton step is limited, 
+$||{\bf \delta x}_i|| < \delta$, 
+where $\delta$ is the size of the '''trust region''':
+$$(d)\quad \min_{{\bf \delta x}_i:\ ||{\bf \delta x}_i||<\delta} \  \left|\left| {\bf F}(\vec{x}_i) + \frac{\vec{\partial F}}{\vec{\partial x}} \vec{\delta x}_i \right|\right|\ .$$
 Given the minimisation, the hookstep $\vec{\delta x}_i$ is expected to produce a better result than a simple damped step of the same size.  It is also expected to perform much better in 'valleys', where it produces a bent/hooked step to a point along the valley, 
 rather than jumping from one side of the valley to the other.
 
 The hookstep can be calculated with little extra work to the GMRES method, provided that the size of Krylov-subspace, m, is chosen sufficiently large to solve to the desired accuracy within m GMRES iterations.
 
-For a given $\vec{\delta x}_i$, the reduction in error predicted by the minimisation $(d)$ can be compared with the actual reduction in $||\vec{F}(\vec{x})||$.  According to the accuracy of the prediction, the size of the trust region $\delta$ can be adjusted automatically.
+For a given ${\bf \delta x}_i$, the reduction in error predicted by the minimisation $(d)$ can be compared with the actual reduction in $||{\bf F}({\bf x})||$.  According to the accuracy of the prediction, the size of the trust region $\delta$ can be adjusted automatically.
 
 ### Preconditioning 
 
