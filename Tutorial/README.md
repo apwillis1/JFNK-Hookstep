@@ -24,7 +24,7 @@ Other functions are called by `NewtonHook.m` and are unlikely to need changing f
 - `GMREShook.m`: Calculate hookstep.  Section 3.3 of the notes.
 
 
-### Tutorial
+## Tutorial
 
 1. The following data are points on the periodic orbits of figure 8 of the notes, taken from Viswanath (2003).  $Z=27$ in call cases.
 ``` 
@@ -37,7 +37,7 @@ Orbit      X                  Y                T
 2. In MATLAB, call `MAIN`.  It will plot the result of timestepping the initial guess for the 
 AB orbit (green), call the `NewtonHook` subroutine, then plot the converged solution (blue).
 Scroll back through the output, and 
-compare `relative\_err` for the initial guess at iteration 0 with the final relative error. 
+compare `relative_err` for the initial guess at iteration 0 with the final relative error. 
 3. Comment/uncomment other initial guesses `new_x` $={\bf x}_0$, or experiment with your own.  How do they affect the number of 
 Newton iterations taken? Typically convergence takes $O(10)$ iterations, otherwise it will never converge.
 4. Uncomment the initial guess for an equilibrium.  Here we assume a short fixed $T$, too short for a PO; $T$ is not permitted to change, otherwise 
@@ -45,12 +45,12 @@ $||{\bf \phi}^T({\bf x})-{\bf x}||$ could be reduced by simply taking $T\to 0$.
 Check that `MAIN` can find the analytic equilibrium solution $(\pm\alpha,\pm\alpha,r-1)$, 
 where $\alpha=\sqrt{(r-1)\,b}$. 
 
-### Adapting the code for your own use
+## Adapting the code for your own use
 
 - For a very large system, for which you might consider parallelization 
 (see final comment), you should probably use the Fortran90 version.
 - Experiment with the Template/Example first, to get used to how the code is set up.  The initial guess is put in `new_x`.
-- Note that at present, `new_x(1)}` $=T$ (the period), and `new_x(2:end}` $={\bf x}$ (the state).
+- Note that at present, `new_x(1)` $=T$ (the period), and `new_x(2:end}` $={\bf x}$ (the state).
 - The place to start editing code is `steporbit`.  If you already have 
 an existing timestepping code, it could do something as simple 
 as call it externally via system calls:
