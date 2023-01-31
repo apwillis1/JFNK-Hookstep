@@ -1,8 +1,10 @@
 %----------------------------------------------------------------------
-% Openpipeflow.org.  If used in your work, please cite
-% Willis, A. (2017) SoftwareX 6, 124-127.
-% https://doi.org/10.1016/j.softx.2017.05.003 (open access)
-%                                      Thanks in advance! Ashley 2019.
+% https://github.com/apwillis1/JFNK-Hookstep
+%
+% Please cite either of
+% https://doi.org/10.48550/arXiv.1908.06730
+% https://doi.org/10.1016/j.softx.2017.05.003 
+%                                      Thanks in advance! Ashley 2023.
 %----------------------------------------------------------------------
 % solve A x = b for x ;  
 % minimise |Ax-b| subject to constraint |x| < delta .

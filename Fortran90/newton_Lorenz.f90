@@ -1,8 +1,10 @@
 !*************************************************************************
-! Openpipeflow.org.  If used in your work, please cite
+! https://github.com/apwillis1/JFNK-Hookstep
+!
+! Please cite either of
 ! https://doi.org/10.48550/arXiv.1908.06730
 ! https://doi.org/10.1016/j.softx.2017.05.003 
-!                                      Thanks in advance! Ashley 2019.
+!                                      Thanks in advance! Ashley 2023.
 !*************************************************************************
 !  > gfortran newton_Lorenz.f90 -llapack
 !  > ./a.out
