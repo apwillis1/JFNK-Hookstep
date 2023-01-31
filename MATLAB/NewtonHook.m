@@ -1,10 +1,10 @@
 %----------------------------------------------------------------------
-! https://github.com/apwillis1/JFNK-Hookstep
-!
-! Please cite either of
-! https://doi.org/10.48550/arXiv.1908.06730
-! https://doi.org/10.1016/j.softx.2017.05.003 
-!                                      Thanks in advance! Ashley 2023.
+% https://github.com/apwillis1/JFNK-Hookstep
+%
+% Please cite either of
+% https://doi.org/10.48550/arXiv.1908.06730
+% https://doi.org/10.1016/j.softx.2017.05.003 
+%                                      Thanks in advance! Ashley 2023.
 %----------------------------------------------------------------------
 % Find root f(x) = 0 by Newton method with gmres-hookstep:
 %    invert  df(x_n)/dx . s = f(x_n)  
