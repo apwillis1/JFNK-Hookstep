@@ -11,4 +11,5 @@ FURTHER DETAILS ON THE METHOD:  https://doi.org/10.48550/arXiv.1908.06730
 
 CITATION:  https://doi.org/10.48550/arXiv.1908.06730 or https://doi.org/10.1016/j.softx.2017.05.003
 
-AUTHOR:  Ashley P. Willis, School of Mathematics and Statistics, University of Sheffield. 
+AUTHOR:  Ashley P. Willis, School of Mathematics and Statistics, University of Sheffield.  https://www.sheffield.ac.uk/maths/research/fluid
+
