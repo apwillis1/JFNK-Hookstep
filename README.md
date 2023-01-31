@@ -13,6 +13,9 @@ CITATION:  https://doi.org/10.48550/arXiv.1908.06730 or https://doi.org/10.1016/
 
 AUTHOR:  Ashley P. Willis, School of Mathematics and Statistics, University of Sheffield.  https://www.sheffield.ac.uk/maths/research/fluid
 
+THANKS:  Rich Kerswell, Predrag Cvitanovi\'c ([chaosbook.org](http://www.chaosbook.org)), John Gibson ([channelflow.org](http://www.channelflow.org)), 
+Marc Avila and many others for their generous support in many forms.  Developed under EPSRC grants EP/K03636X/1, EP/P000959/1.
+
 
 ## Using the code
 
@@ -70,6 +73,6 @@ The GMRES implementations can be supplied with a preconditioner routine (see [GM
 
 ### Further details
 
-Extended overview https://doi.org/10.48550/arXiv.1908.06730 See section 4 for a [Tutorial and Adapting the code for your own use](Tutorial/README.md)
+Extended overview https://doi.org/10.48550/arXiv.1908.06730 .  See section 4 for a [Tutorial and Adapting the code for your own use](Tutorial/README.md)
 
-Further details on the method [channelflow.org](http://channelflow.org/dokuwiki/doku.php?id=docs:math:newton_krylov_hookstep).
+Further details on the method at [channelflow.org](http://channelflow.org/dokuwiki/doku.php?id=docs:math:newton_krylov_hookstep).
