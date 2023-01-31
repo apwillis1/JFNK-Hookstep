@@ -45,7 +45,7 @@ The Jacobian matrix is usually difficult to evaluate.  However, the problem $(b)
 
 Iterations of the GMRES algorithm for the problem $(b)$ involve calculating products of the Jacobian with given ${\bf \delta x}$, which may be approximated, e.g.
 $$(c)\qquad \frac{{\bf \partial F}}{{\bf \partial x}} {\bf \delta x} \approx \frac{1}{\epsilon}({\bf F}({\bf x}_i+\epsilon {\bf \delta x})-{\bf F}({\bf x}_i))$$ 
-for some small value $\epsilon$.  (Try $\epsilon$ such that $(\epsilon||{\bf \delta x}||)/||{\bf x}_i||=10^{-6}$.)  The important point is that we do not need to know the Jacobian; *only a routine for evaluating* ${\bf F}({\bf x})$ *is required*.
+for some small value $\epsilon$.  (Try $\epsilon$ such that $(\epsilon||{\bf \delta x}||)/||{\bf x}_i||=10^{-6}$.)  The important point is that we do not need to know the Jacobian; **only a routine for evaluating** ${\bf F}({\bf x})$ **is required**.
 
 Note that provided that each step of the Newton method, ${\bf \delta x}$, is essentially in the correct direction, the method is expected to converge.  Therefore the tolerance specified in the accuracy of the solution for ${\bf \delta x}$ in each Newton step (calculated via the GMRES method) typically need not be so stringent as the tolerance placed on the Newton method itself for the solution ${\bf x}$.  For example, we might seek a relative error for the Newton solution $||{\bf F}({\bf x})||/||{\bf x}||=O(10^{-8})$, but a relative error for the GMRES steps $||A{\bf \delta x}-{\bf b}||/||{\bf \delta x}||=O(10^{-3})$ is likely to be sufficient for calculation of the steps ${\bf \delta x}$.
 
