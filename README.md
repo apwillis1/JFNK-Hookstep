@@ -1,5 +1,5 @@
 # JFNK-Hookstep
-Jacobian-Free Newton-Krylov solver with Hookstep-trust-region approach.
+### Jacobian-Free Newton-Krylov solver with Hookstep-trust-region approach.
 
 This is a solver for systems in the form ${\bf F}({\bf x})={\bf 0}$, where the dimension (length) $n$ of the vector ${\bf x}$ can be either large or small.  The trust-region approach enlarges the basin of attraction of a solution ${\bf x}_0$ by automatically adjusting the size of each step in the Newton iteration, while the Hookstep optimises the direction of the step to accelerate convergence. 
 
