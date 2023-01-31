@@ -1,6 +1,6 @@
 # Tutorial and Overview
 
-Detailed notes can be found at https://doi.org/10.48550/arXiv.1908.06730 .  **See Section 4.1 of the notes on adapting the code for your own use**.  The tutorial of Section 4 seeks periodic solutions of the Lorenz equations.  Below is a brief overview of the tutorial and the code.
+Detailed notes can be found at https://doi.org/10.48550/arXiv.1908.06730 .  **See Section 4.1 of the notes on adapting the code for your own use**.  I recommend that you first try the tutorial - **the tutorial of Section 4 seeks periodic solutions of the Lorenz equations.**  Below is a brief overview of the tutorial and the code.
 
 For an initial state ${\bf x}$, we say that ${\phi}^T({\bf x})$ is the result of time integration for a time $T$.  A periodic solution then satisfies ${\phi}^T({\bf x})={\bf x}$.  We set up the system to be solved as ${\bf F}({\bf x})={\phi}^T({\bf x})-{\bf x}$.  If $T$ is an unknown, we must append an extra condition to ${\bf F}$, but in the case of an equilibrium we can select any fixed value for $T$ (typically $O(1-10)$ for a non-dimensionalised system).  
 
