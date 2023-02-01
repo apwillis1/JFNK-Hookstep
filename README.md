@@ -25,7 +25,7 @@ Marc Avila and many others for their generous support in many forms.  Developed 
 
 [NewtonHook subroutine](./NewtonHook.md).
 
-[GMRES subroutine](https://openpipeflow.org/index.php?title=File:GMRESm.f90).
+[GMRES subroutine](./GMRESm.md).
 
 
 ## Method overview
@@ -71,7 +71,7 @@ For a given ${\bf \delta x}_i$, the reduction in error predicted by the minimisa
 
 ### Preconditioning 
 
-The GMRES implementations can be supplied with a preconditioner routine (see [GMRES subroutine](https://openpipeflow.org/index.php?title=File:GMRESm.f90)), but is unlikely to be necessary when the method is combined with time integration.
+The GMRES implementations can be supplied with a preconditioner routine (see [GMRES subroutine](./GMRESm.md)), but is unlikely to be necessary when the method is combined with time integration.
 
 ### Further details
 
