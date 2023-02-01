@@ -12,14 +12,14 @@ The MATLAB and Fortran codes look surprisingly similar.  The subroutines do the 
 - `Lorenz_f.m`:  Defines the Lorenz evolution rule $(\dot{X},\dot{Y},\dot{Z})={\bf f}(X,Y,Z)$.
 - `steporbit.m`: Evaluate ${\phi}^T({\bf x})$, i.e. do `ndts_` timesteps according to ${\bf f}$, where the input vector is constructed as  x(1)=T and x(2:4)=(X,Y,Z).  The timestep size is dt=T/ndts\_.
 - `saveorbit.m`: Called at the end of each iteration Newton iteration, this saves best ${\bf x}$ so far.  `relative_err` $=||{\bf F}({\bf x})|| / ||{\bf x}||$.
-- `MAIN.m`:  Set up initial guess ${\bf x}_0$ and call the 'black box' `NewtonHook.m`.  [NewtonHook subroutine](https://openpipeflow.org/index.php?title=File:NewtonHook.f90)
+- `MAIN.m`:  Set up initial guess ${\bf x}_0$ and call the 'black box' `NewtonHook.m`.  [NewtonHook subroutine](../NewtonHook.md)
 
 Other functions are called by `NewtonHook.m` and are unlikely to need changing for a problem of this type.
 - `getrhs.m`: Evaluate right-hand side, i.e. ${\bf F}({\bf x})=\phi^T({\bf x})-{\bf x}$.  See (3.11) of the linked document.
 - `multJ.m`: Evaluate multiplication by the Jacobian.  See (3.13) for the finite difference approximation.
 - `multJp.m`: Preconditioner for multiplication, here an empty function.
 - `dotprd.m`: Evaluate inner product $\langle{\bf a}|{\bf b}\rangle$.
-- `GMRESm.m`: Generalized minimized residual method.  Section 3.2 of the notes.  [GMRES subroutine](https://openpipeflow.org/index.php?title=File:GMRESm.f90).
+- `GMRESm.m`: Generalized minimized residual method.  Section 3.2 of the notes.  [GMRES subroutine](../GMRESm.md).
 
 - `GMREShook.m`: Calculate hookstep.  Section 3.3 of the notes.
 
@@ -88,6 +88,6 @@ Split vectors over threads and let each thread pass its section
 to `NewtonHook`.  The only place where an MPI call is required is an MPI\_Allreduce in the 
 `dotprod` function.  To avoid all threads outputting information, set `info=1` on rank 0, and `info=0` on all other ranks.
 - Further usage notes can be found at 
-[NewtonHook subroutine](https://openpipeflow.org/index.php?title=File:NewtonHook.f90) and 
-[GMRES subroutine](https://openpipeflow.org/index.php?title=File:GMRESm.f90).
+[NewtonHook subroutine](../NewtonHook.md) and 
+[GMRES subroutine](../GMRESm.md).
 
