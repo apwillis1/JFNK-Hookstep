@@ -19,6 +19,18 @@ THANKS:  Rich Kerswell, Predrag Cvitanovi\'c ([chaosbook.org](http://www.chaosbo
 Marc Avila and many others for their generous support in many forms.  Developed under EPSRC grants EP/K03636X/1, EP/P000959/1.
 
 
+## Download
+
+With git:
+```
+$ git clone https://github.com/apwillis1/JFNK-Hookstep.git
+```
+Manually: 
+1. click on 'MATLAB' or 'Fortran90' above, 
+2. click on the code file, 
+3. click on 'Raw', 
+4. Ctrl+S, or use browser option 'Save page as...' 
+
 ## Using the code
 
 [**Tutorial** and **Adapting the code for your own use**](Tutorial/README.md).
