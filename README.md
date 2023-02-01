@@ -23,7 +23,7 @@ Marc Avila and many others for their generous support in many forms.  Developed 
 
 [**Tutorial** and **Adapting the code for your own use**](Tutorial/README.md).
 
-[NewtonHook subroutine](https://openpipeflow.org/index.php?title=File:NewtonHook.f90).
+[NewtonHook subroutine](./NewtonHook.md).
 
 [GMRES subroutine](https://openpipeflow.org/index.php?title=File:GMRESm.f90).
 
