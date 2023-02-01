@@ -7,6 +7,8 @@ I hope that you will find that the code is simply written, and that it can be bo
 
 The JFNK solver and GMRES codes could be run 'native' (MATLAB/Fortran90) or could be integrated with codes developed in other languages by asking ${\bf F}$ to save ${\bf x}$ to disk, execute the existing code via a terminal command, then loading the result.  The MATLAB version will run under the free alternative Octave.  The code may be supplied a preconditioner.
 
+Developed as part of www.openpipeflow.org
+
 FURTHER DETAILS ON THE METHOD:  https://doi.org/10.48550/arXiv.1908.06730
 
 CITATION:  https://doi.org/10.48550/arXiv.1908.06730 or https://doi.org/10.1016/j.softx.2017.05.003
