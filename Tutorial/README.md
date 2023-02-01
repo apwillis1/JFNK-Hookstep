@@ -26,7 +26,7 @@ Other functions are called by `NewtonHook.m` and are unlikely to need changing f
 
 ## Tutorial
 
-1. The following data are points on the periodic orbits of figure 8 of the notes, taken from Viswanath (2003).  $Z=27$ in call cases.
+0. The following data are points on the **periodic orbits** of figure 8 of the notes, taken from Viswanath (2003).  $Z=27$ in call cases.
 ``` 
 Orbit      X                  Y                T
    AB   −13.763610682134   −19.578751942452   1.5586522107162
@@ -34,14 +34,12 @@ Orbit      X                  Y                T
  AAAB   −11.998523280062   −15.684254096883   3.0235837034339
  AABB   −12.915137970311   −17.673100172646   3.0842767758221
 ```
-2. In MATLAB, call `MAIN`.  It will plot the result of timestepping the initial guess for the 
-AB orbit (green), call the `NewtonHook` subroutine, then plot the converged solution (blue).
-Scroll back through the output, and 
-compare `relative_err` for the initial guess at iteration 0 with the final relative error. 
-3. Comment/uncomment other initial guesses `new_x` $={\bf x}_0$, or experiment with your own.  How do they affect the number of 
+1. Download the code and have a look at `MAIN.m` or `PROGRAM MAIN` section of `newton_Lorenz.f90`.
+2. In MATLAB, run `>> MAIN()`, or run your executable if you've compiled the Fortran version.  They will produce the same result, except that the MATLAB version will also plot orbits corresponding to the initial guess (green) and the converged solution (blue).
+3. Scroll back through the output, and compare `relative_err` for the initial guess (iteration 0) with the final relative error. 
+4. Comment/uncomment other initial guesses `new_x` $={\bf x}_0$, or experiment with your own.  How do they affect the number of 
 Newton iterations taken? Typically convergence takes $O(10)$ iterations, otherwise it will never converge.
-4. Uncomment the initial guess for an equilibrium.  Here we assume a short fixed $T$, too short for a PO; $T$ is not permitted to change, otherwise 
-$||{\bf \phi}^T({\bf x})-{\bf x}||$ could be reduced by simply taking $T\to 0$.
+5. Now let's find an **equilibrium** point of the system.  Uncomment the initial guess and settings to calculate an equilibrium.  Here we assume a short fixed $T$, too short for a PO; $T$ is not permitted to change, otherwise $||{\bf \phi}^T({\bf x})-{\bf x}||$ could be reduced by simply taking $T\to 0$.
 Check that `MAIN` can find the analytic equilibrium solution $(\pm\alpha,\pm\alpha,r-1)$, 
 where $\alpha=\sqrt{(r-1)\,b}$. 
 
