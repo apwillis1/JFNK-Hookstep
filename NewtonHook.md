@@ -11,7 +11,7 @@ As the calculation proceeds, `new_x(:)` is updated with the improved solution, h
 - `newtonhook(...)` also needs to be passed
    * a function that calculates the dot product of two vectors,
    * a function that calculates ${\bf F}({\bf x})$ for a given ${\bf x}$,
-   * a function that calculates $\frac{{\bf dF}}{\bf {dx}}\ {\bf \delta x}$ at ${{\bf x}_i}$ for a given ${\bf \delta x}$.  See approximation in [README.md](./README.md), where ${\bf F}({\bf x}_i)$ is already stored in <tt>new_fx(:)</tt>.
+   * a function that calculates $\frac{{\bf \partial F}}{\bf {\partial x}}\ {\bf \delta x}$ at ${{\bf x}_i}$ for a given ${\bf \delta x}$.  See approximation in [README.md](./README.md) and note that ${\bf F}({\bf x}_i)$ is already stored in <tt>new_fx(:)</tt>.
    * a subroutine that replaces a vector ${\bf x}$ with the solution of $M{\bf x}'={\bf x}$ for ${\bf x}'$, where $M$ is a preconditioner matrix.  This may simply be an empty subroutine if no preconditioner is required, i.e. $M=I$.
    * a subroutine that is called at the end of each iteration.  This may be used to save the current state after each iteration, if desired.
 - The functions above may require auxiliary data, in addition to the given ${\bf x}$ or ${\bf \delta x}$.  There are several possible solutions, e.g.:
@@ -20,7 +20,7 @@ As the calculation proceeds, `new_x(:)` is updated with the improved solution, h
    * place the data in `global` variables (MATLAB).
    * write the vector to disk, call a script that runs an external programme, then load the result.
 - Extra constraints may be necessary, e.g. that determine an update to the period of an orbit.  
-The function that evaluates $\frac{{\bf dF}}{{\bf dx}}\ {\bf \delta x}$ for a given ${\bf \delta x}$ should append to the 
+The function that evaluates $\frac{{\bf \partial F}}{{\bf \partial x}}\ {\bf \delta x}$ for a given ${\bf \delta x}$ should append to the 
 result the evaluations of the constraints.  Correspondingly for each constraint, an extra <tt>0</tt> should be appended 
 to ${\bf F}({\bf x}_i)$ (the evaluated constraint should equal zero when converged).  
 
