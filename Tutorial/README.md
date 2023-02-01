@@ -18,7 +18,7 @@ Other functions are called by `NewtonHook.m` and are unlikely to need changing f
 - `getrhs.m`: Evaluate right-hand side, i.e. ${\bf F}({\bf x})=\phi^T({\bf x})-{\bf x}$.  See (3.11) of the linked document.
 - `multJ.m`: Evaluate multiplication by the Jacobian.  See (3.13) for the finite difference approximation.
 - `multJp.m`: Preconditioner for multiplication, here an empty function.
-- `dotprd.m`: Evaluate inner product $\langle\vec{a}|\vec{b}\rangle$.
+- `dotprd.m`: Evaluate inner product $\langle{\bf a}|{\bf b}\rangle$.
 - `GMRESm.m`: Generalized minimized residual method.  Section 3.2 of the notes.  [GMRES subroutine](https://openpipeflow.org/index.php?title=File:GMRESm.f90).
 
 - `GMREShook.m`: Calculate hookstep.  Section 3.3 of the notes.
