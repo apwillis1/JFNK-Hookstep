@@ -47,7 +47,7 @@ where $\alpha=\sqrt{(r-1)\,b}$.
 
 See also [NewtonHook subroutine](../NewtonHook.md) and [GMRES subroutine](../GMRESm.md).
 
-- Experiment with the Template/Example first, to get used to how the code is set up.  The initial guess is put in `new_x`.
+- Experiment with the above Template/Example first, to get used to how the code is set up.  The initial guess is put in `new_x`.
 - Note that at present, `new_x(1)` $=T$ (the period), and `new_x(2:end}` $={\bf x}$ (the state).
 - The place to start editing code is `steporbit`.  If you already have 
 an existing timestepping code, it could do something as simple 
