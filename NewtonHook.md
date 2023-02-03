@@ -4,6 +4,12 @@ See also the newton-Lorenz template and comments within the Main file.
 
 ### Usage notes.
 
+- For the Hookstep to be calculated correctly, GMRES needs to converge within `m` iterations (each Newton iteration).  
+   * For a small system, simply equate `m` to the dimension of the system, $n$.  
+   * If the dimension is high and you are not integrating with timestepping, then you will need a preconditioner to assist GMRES.
+   * If you are coupling with a timestepper and looking for an equilibrium, doubling $T$ will typically halve the GMRES iterations required each Newton iteration.  
+   * For a periodic orbit, $T$ should be sufficiently long already to keep `m` to a reasonable value.
+   * Any implementation of GMRES(m) is likely to struggle if m gets to $O(1000)$, due to accumulated errors in the orthogonalisation.  Aim to keep `m` $\sim 50$ or less. 
 - In the Fortran version, prior to calling the subroutine `newtonhook(...)`, the arrays `new_x(:)` $\equiv{\bf x}_i$ 
 and `new_fx(:)` $\equiv{\bf F}({\bf x}_i)$ need to be allocated with the dimension $n$:  `allocate(new_x(n),new_fx(n))`  
 - Prior to calling `newtonhook(...)`, the array variable `new_x(:)` must be assigned the initial guess ${\bf x}_0$. 
