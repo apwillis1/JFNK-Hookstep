@@ -45,8 +45,8 @@ where $\alpha=\sqrt{(r-1)\,b}$.
 
 ## Adapting the code for your own use
 
-- For a very large system, for which you might consider parallelization 
-(see final comment), you should probably use the Fortran90 version.
+See also [NewtonHook subroutine](../NewtonHook.md) and [GMRES subroutine](../GMRESm.md).
+
 - Experiment with the Template/Example first, to get used to how the code is set up.  The initial guess is put in `new_x`.
 - Note that at present, `new_x(1)` $=T$ (the period), and `new_x(2:end}` $={\bf x}$ (the state).
 - The place to start editing code is `steporbit`.  If you already have 
@@ -81,11 +81,9 @@ as call it externally via system calls:
 where $W$ is a diagonal matrix of positive weights, and here $T$ is the 
 transpose, then pass ${\bf x}'=W^\frac{1}{2}{\bf x}$ to the code.
 The existing functions that take inner products then need no modification.
-- For parallel use with MPI+Fortran, the `NewtonHook` and `GMRES` codes do not need changing:
+- **Parallel use** with MPI+Fortran, the `NewtonHook` and `GMRES` codes do not need changing:
 Split vectors over threads and let each thread pass its section
 to `NewtonHook`.  The only place where an MPI call is required is an MPI\_Allreduce in the 
 `dotprod` function.  To avoid all threads outputting information, set `info=1` on rank 0, and `info=0` on all other ranks.
-- Further usage notes can be found at 
-[NewtonHook subroutine](../NewtonHook.md) and 
-[GMRES subroutine](../GMRESm.md).
+
 
