@@ -3,7 +3,7 @@
 
 This is a solver for systems in the form ${\bf F}({\bf x})={\bf 0}$, where the dimension (length) $n$ of the vector ${\bf x}$ can be either large or small.  The trust-region approach enlarges the basin of attraction of a solution ${\bf x}_0$ by automatically adjusting the size of each step in the Newton iteration, while the Hookstep optimises the direction of the step to accelerate convergence.  
 
-The method is 'Jacobian-Free' in the sense that the user only need supply a function that evaluates ${\bf F}({\bf x})$ for given ${\bf x}$, not the Jacobian matrix itself, despite that the Jacobian appears in the Newton iteration formula.  The Newton iteration formula is solved via the GMRES(m) algorithm, which may be accelerated with a preconditioner.
+The method is 'Jacobian-Free' in the sense that the user only need supply a function that evaluates ${\bf F}({\bf x})$ for given ${\bf x}$, not the Jacobian matrix itself, despite that the Jacobian appears in the Newton iteration formula.  The Newton iteration formula is solved via the GMRES(m) algorithm, the implementation of which may be supplied a preconditioner.
 
 I hope that you will find that the code is simply written, and that it can be bolted on to any existing solver for ${\bf F}({\bf x})$, e.g. ${\bf F}$ is the result of timestepping $\{\bf x}$.  The template solves for periodic orbits of the Lorenz equations, $n=3$, while the same code has been used to compute nonlinear equilibria of pipe flow, $n=O(10^5)$, via nonlinear parallel (MPI) simulations without modification.
 
