@@ -5,7 +5,7 @@ This is a solver for systems in the form ${\bf F}({\bf x})={\bf 0}$, where the d
 
 The method is 'Jacobian-Free' in the sense that the user only need supply a function that evaluates ${\bf F}({\bf x})$ for given ${\bf x}$, not the Jacobian matrix itself, despite that the Jacobian appears in the Newton iteration formula.  The Newton iteration formula is solved via the GMRES(m) algorithm, the implementation of which may be supplied a preconditioner.
 
-I hope that you will find that the code is simply written, and that it can be bolted on to any existing solver for ${\bf F}({\bf x})$, e.g. ${\bf F}$ is the result of timestepping $\{\bf x}$.  The template solves for periodic orbits of the Lorenz equations, $n=3$, while the same code has been used to compute nonlinear equilibria of pipe flow, $n=O(10^5)$, via nonlinear parallel (MPI) simulations without modification.
+I hope that you will find that the code is simply written, and that it can be bolted on to any existing solver for ${\bf F}({\bf x})$, e.g. ${\bf F}$ is the result of timestepping $\{\bf x}$.  The template solves for periodic orbits of the Lorenz equations, $n=3+1$ (dimension of the system + unknown period), while the same code has been used without modification to compute nonlinear equilibria of pipe flow, $n=O(10^6)$, via parallel (MPI) simulations.
 
 The JFNK solver and GMRES codes could be run 'native' (MATLAB/Fortran90) or could be integrated with codes developed in other languages by asking ${\bf F}$ to save ${\bf x}$ to disk, execute the existing code via a terminal command, then loading the result.  The MATLAB version will run under the free alternative Octave.
 
