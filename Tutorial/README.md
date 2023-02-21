@@ -41,7 +41,7 @@ Orbit      X                  Y                T
 Newton iterations taken? Typically convergence takes $O(10)$ iterations, otherwise it will never converge.
 5. Now let's find an **equilibrium** point of the system.  Uncomment the initial guess and settings to calculate an equilibrium.  Here we assume a short fixed $T$, too short for a PO; $T$ is not permitted to change, otherwise $||{\bf \phi}^T({\bf x})-{\bf x}||$ could be reduced by simply taking $T\to 0$.
 Check that `MAIN` can find the analytic equilibrium solution $(\pm\alpha,\pm\alpha,r-1)$, 
-where $\alpha=\sqrt{(r-1)\,b}$. 
+where $\alpha=\sqrt{(r-1)\ b}$. 
 
 ## Adapting the code for your own use
 
