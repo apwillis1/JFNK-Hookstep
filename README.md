@@ -3,11 +3,11 @@
 
 This is a solver for systems in the form ${\bf F}({\bf x})={\bf 0}$, where the dimension (length) $n$ of the vector ${\bf x}$ can be either large or small.  The trust-region approach enlarges the basin of attraction of a solution ${\bf x}_0$ by automatically adjusting the size of each step in the Newton iteration, while the Hookstep optimises the direction of the step to accelerate convergence.  
 
-The method is 'Jacobian-Free' in the sense that the user only need supply a function that evaluates ${\bf F}({\bf x})$ for a given ${\bf x}$.  The user need not supply a Jacobian matrix, despite that the Jacobian appears in the Newton iteration formula.  The Newton iteration formula is solved via the GMRES(m) algorithm, the implementation of which may be supplied a preconditioner.
+The method is 'Jacobian-Free' in the sense that the user only need supply a function that evaluates ${\bf F}({\bf x})$ for a given ${\bf x}$.  The user need not supply a Jacobian matrix, despite that the Jacobian appears in the Newton iteration formula.  The Newton iteration formula is solved via the [GMRES(m)](./GMRESm.md) algorithm, the implementation of which may be supplied a preconditioner.  (Further details of the method are given below.)
 
 I hope that you will find that the code is simply written, and that it can be bolted on to any existing code that evaluates (a potentially complicated) ${\bf F}({\bf x})$, for example, where ${\bf F}$ is the result of timestepping $\{\bf x}$.  The template solves for periodic orbits of the Lorenz equations, $n=3+1$ (dimension of the system + unknown period), while the same code has been used without modification to compute nonlinear equilibria of pipe flow, $n=O(10^6)$, via parallel (MPI) simulations.
 
-The JFNK solver and GMRES codes could be run 'native' (MATLAB/Fortran90) or could be integrated with codes developed in other languages by asking ${\bf F}$ to save ${\bf x}$ to disk, execute the existing code via a terminal command, then loading the result.  The MATLAB version will run under the free alternative Octave.
+The JFNK solver and GMRES codes could be run 'native' (MATLAB/Fortran90) or could be integrated with codes developed in other languages by asking '${\bf F}({\bf x})$' (in the MATLAB/Fortran JFNK olver) to save ${\bf x}$ to disk, execute the other existing code via a terminal command, then loading and returning the result.  The MATLAB version will run under the free alternative Octave.
 
 Developed as part of www.openpipeflow.org
 
