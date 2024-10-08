@@ -7,7 +7,7 @@ The method is 'Jacobian-Free' in the sense that the user only need supply a func
 
 I hope that you will find that the code is simply written, and that it can be bolted on to any existing code that evaluates (a potentially complicated) ${\bf F}({\bf x})$, for example, where ${\bf F}$ is the result of timestepping $\{\bf x}$.  The template solves for periodic orbits of the Lorenz equations, $n=3+1$ (dimension of the system + unknown period), while the same code has been used without modification to compute nonlinear equilibria of pipe flow, $n=O(10^6)$, via parallel (MPI) simulations.
 
-The JFNK solver and GMRES codes are available in both MATLAB/Fortran90 versions, and are easily integrated with codes developed in other languages: edit your code a little so that it loads a state ${\bf x}$ from disk, calculates ${\bf F}({\bf x})$ and saves the result to disk.  The MATLAB/Fortran code then only need save ${\bf x}$ to disk, execute your existing code via a terminal/system command, then load the result. 
+The JFNK solver and GMRES codes are available in both MATLAB/Fortran90 versions, and are easily integrated with codes developed in other languages: if your code doesn't already, edit it a little so that it loads a state ${\bf x}$ from disk, calculates ${\bf F}({\bf x})$ and saves the result to disk.  The MATLAB/Fortran code then only need save ${\bf x}$ to disk, execute your existing code via a terminal/system command, then load the result. 
 
 The MATLAB version of this code will run under the free alternative Octave.
 
