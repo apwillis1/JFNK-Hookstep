@@ -7,15 +7,17 @@ The method is 'Jacobian-Free' in the sense that the user only need supply a func
 
 I hope that you will find that the code is simply written, and that it can be bolted on to any existing code that evaluates (a potentially complicated) ${\bf F}({\bf x})$, for example, where ${\bf F}$ is the result of timestepping $\{\bf x}$.  The template solves for periodic orbits of the Lorenz equations, $n=3+1$ (dimension of the system + unknown period), while the same code has been used without modification to compute nonlinear equilibria of pipe flow, $n=O(10^6)$, via parallel (MPI) simulations.
 
-The JFNK solver and GMRES codes could be run 'native' (MATLAB/Fortran90) or could be integrated with codes developed in other languages by asking '${\bf F}({\bf x})$' (in the MATLAB/Fortran JFNK olver) to save ${\bf x}$ to disk, execute the other existing code via a terminal command, then loading and returning the result.  The MATLAB version will run under the free alternative Octave.
+The JFNK solver and GMRES codes are available in both MATLAB/Fortran90 versions, and are easily integrated with codes developed in other languages: edit your code a little so that it loads a state ${\bf x}$ from disk, calculates ${\bf F}({\bf x})$ and saves the result to disk.  The MATLAB/Fortran code then only need save ${\bf x}$ to disk, execute your existing code via a terminal/system command, then load the result. 
+
+The MATLAB version of this code will run under the free alternative Octave.
 
 Developed as part of www.openpipeflow.org
 
-FURTHER DETAILS ON THE METHOD:  https://doi.org/10.48550/arXiv.1908.06730
+FURTHER DETAILS ON THE METHOD:  See below or at https://doi.org/10.48550/arXiv.1908.06730
 
 CITATION:  https://doi.org/10.48550/arXiv.1908.06730 or https://doi.org/10.1016/j.softx.2017.05.003
 
-AUTHOR:  Ashley P. Willis, School of Mathematics and Statistics, University of Sheffield.  https://www.sheffield.ac.uk/maths/research/fluid
+AUTHOR:  Ashley P. Willis, Applied Mathematics, School of Mathematical and Physical Sciences, University of Sheffield.  https://www.sheffield.ac.uk/mps/research/fluid-dynamics
 
 THANKS:  Rich Kerswell, Predrag Cvitanovi\'c ([chaosbook.org](http://www.chaosbook.org)), John Gibson ([channelflow.org](http://www.channelflow.org)), 
 Marc Avila and many others for their generous support in many forms.  Developed under EPSRC grants EP/K03636X/1, EP/P000959/1.
